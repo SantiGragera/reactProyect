@@ -1,0 +1,52 @@
+.headerHome{
+    background-color: rgb(21, 21, 71);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    height: 85px;
+    padding: 0 2% 0 2% ;
+    font-family: 'Teko', Verdana;
+}
+.logoCat img{
+    width: 55px;
+    cursor: pointer;
+}
+.logoCat:hover{
+    transform: scale(1.1);
+}
+.navHome li{
+    display: inline-block;
+}
+.navHome li a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 30px;
+    padding: 0px 20px ;
+    font-size: 25px;
+}
+.carrito{
+    display: flex;
+    align-items: center;
+}
+.carrito h2{
+    color: white;
+}
+.carrito img{
+    width: 55px;
+    text-decoration: none;
+}
+.navHome li a:hover{
+    color: rgb(252, 122, 0);
+}
+.carrito img:hover{
+    animation: saltar 0.5s infinite;
+}
+@keyframes saltar {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
