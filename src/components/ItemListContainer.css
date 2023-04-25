@@ -1,5 +1,78 @@
-.ilc h2{
-    color: rgb(21, 21, 71);
+*{
+    font-family: 'Teko', Verdana;
+}
+body{
+    background-color: rgb(27, 27, 105);
+}
+.todocat{
+    height: 100%;
+    background-color: rgb(27, 27, 105);
+}
+.ilc{
+    background-color: rgb(27, 27, 105);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+}
+.cards{
+    width: 18%;
+    height: 40%;
+    border: 1px solid rgb(21, 21, 71);
+    background-color: rgb(21, 21, 71);
+    border-radius: 0 0 60px 60px;
+    color: white;
+}
+.foto{
+    width: 100%;
+    height: 50%;
+}
+.contexto{
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+}
+.btncards{
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: rgb(252, 122, 0);
+    color: white;
+    border: 2px solid rgb(255, 102, 0);
+    animation: 5s;
+}
+.btncards:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.buscarpr{
+    padding-right: 20px;
+    font-family: 'Teko', Verdana;
+    color: white;
+    font-weight:lighter;
+}
+.inputnasi{
+    color: black;
+    border: 2px solid rgb(252, 122, 0);
+    border-radius: 12px;
+}
+.inputsasa{
+    padding-top: 20px;
+    background-color: rgb(27, 27, 105);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.charging{
+    color: rgb(252, 122, 0);
     display: flex;
     justify-content: center;
     align-items: center;

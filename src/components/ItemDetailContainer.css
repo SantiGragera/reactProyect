@@ -1,0 +1,7 @@
+.charging2{
+    color: rgb(252, 122, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

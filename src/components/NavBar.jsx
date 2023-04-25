@@ -1,17 +1,18 @@
+import { Link } from 'react-router-dom'
 import './NavBar.css'
 
 const NavBar = () => {
     return (
         <header className='headerHome'>
-            <div className='logoCat'>
+            <Link to='/' className='logoCat'>
                 <img src="../multimedia/escudoTalleres.png" alt="escudo talleres" />
-            </div>
+            </Link>
             <nav>
                 <ul className="navHome">
-                    <li><a href="#">Givova</a></li>
-                    <li><a href="#">Remeras</a></li>
+                    <li><a href="#">Linea Talleres</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                    <li><a href="#">Merchandising</a></li>
                     <li><a href="#">AhorraTe</a></li>
-                    <li><a href="#">PanTalones</a></li>
                 </ul>
             </nav>
             <div className="carrito">
