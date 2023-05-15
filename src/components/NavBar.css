@@ -14,10 +14,18 @@
 .logoCat:hover{
     transform: scale(1.1);
 }
-.navHome li{
+.mla{
+    text-decoration: none;
+    list-style: none;
+    color:rgb(252, 122, 0);
+    font-size: 30px;
+    padding: 0px 20px ;
+    font-size: 25px;
+}
+.mli{
     display: inline-block;
 }
-.navHome li a{
+.ma{
     text-decoration: none;
     list-style: none;
     color: white;
@@ -36,7 +44,7 @@
     width: 55px;
     text-decoration: none;
 }
-.navHome li a:hover{
+.ma:hover{
     color: rgb(252, 122, 0);
 }
 .carrito img:hover{

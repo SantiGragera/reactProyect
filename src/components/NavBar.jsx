@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink} from 'react-router-dom'
 import './NavBar.css'
 
 const NavBar = () => {
@@ -8,17 +8,18 @@ const NavBar = () => {
                 <img src="../multimedia/escudoTalleres.png" alt="escudo talleres" />
             </Link>
             <nav>
-                <ul className="navHome">
-                    <li><a href="#">Linea Talleres</a></li>
-                    <li><a href="#">Accesorios</a></li>
-                    <li><a href="#">Merchandising</a></li>
-                    <li><a href="#">AhorraTe</a></li>
-                </ul>
+                <div className="navHome">
+                    <NavLink className={ ({isActive})=> isActive ? 'mli mla' : 'mli ma'}  to="/categoria/lineaTalleres">Linea Talleres</NavLink>
+                    <NavLink className={ ({isActive})=> isActive ? 'mli mla' : 'mli ma'} to="/categoria/accesorios">Accesorios</NavLink>
+                    <NavLink className={ ({isActive})=> isActive ? 'mli mla' : 'mli ma'} to="/categoria/merch">Merchandising</NavLink>
+                </div>
             </nav>
-            <div className="carrito">
-                <img src="../multimedia/carrito.png" alt="" />
-                <h2>0</h2>
-            </div>
+            <Link to='/cart'>
+                <div className="carrito">
+                    <img src="../multimedia/carrito.png" alt="" />
+                    <h2>0</h2>
+                </div>
+            </Link>
         </header>
     )
 }

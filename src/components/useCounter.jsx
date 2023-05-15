@@ -13,5 +13,5 @@ export const useCounter = (initial = 1, min,max) => {
             setCounter(counter - 1)
         }
     }
-  return (counter, handleRestar, handleSumar)
+  return ({counter, handleRestar, handleSumar})
 }

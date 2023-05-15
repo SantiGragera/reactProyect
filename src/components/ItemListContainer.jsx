@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import './ItemListContainer.css'
 import { mFetch } from "./utils/mFetch"
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Filter from './Filter';
 
-const ItemListContainer = (prop) => {
+const ItemListContainer = ({prop}) => {
 
     const [productos, setProductos] = useState([])
     const [isLoading, setIsLoading] = useState (true)
+    const { categoria } = useParams
+    console.log( categoria )
     useEffect(() => {
-        mFetch()
-        .then(resultado => {
-            setProductos(resultado)
-        })
-        .catch(error => console.log(error))
-        .finally(() => setIsLoading(false))
-    })
+            mFetch()
+            .then(resultado => {
+                setProductos(resultado)
+            })
+            .catch(error => console.log(error))
+            .finally(() => setIsLoading(false))
+    }, [])
 
     const handleProductFiltered = ({ filterState, handleFilterChange }) => (
         <div className='todocat'>
@@ -51,7 +53,7 @@ const ItemListContainer = (prop) => {
                                             <h4 className='nombre'>{producto.nombre}</h4>
                                             <h5 className='precio'>{producto.precio}</h5>
                                             <h6 className='stock'>{producto.stock} Unidades</h6>
-                                            <Link to='/detail'>
+                                            <Link to={`/detail/${producto.id}`}>
                                                 <button className='btncards'>Ver más</button>
                                             </Link>
                                         </div>

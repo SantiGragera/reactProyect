@@ -16,9 +16,6 @@ const ItemDetailContainer = () => {
     .finally(() => setIsLoading(false))
 
   }, [])
-  
-  console.log(pid)
-
   return (
     <div>
       {isLoading ?

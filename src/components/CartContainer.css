@@ -1,0 +1,40 @@
+.totali{
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 35px;
+}
+.cartview{
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+}
+.cartext{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(21, 21, 71);
+    color: white;
+    height: 150px;
+    width: 750px;
+    border-radius: 45px;
+    border: 2px solid rgb(252, 122, 0);
+}
+.cartimg{
+    width: 150px;
+    border-radius: 25px;
+}
+.kitar{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgb(252, 122, 0);
+    border: 0;
+    color: rgb(21, 21, 71);
+    font-size: 30px;
+    border: 3px solid rgb(21, 21, 71);
+}
