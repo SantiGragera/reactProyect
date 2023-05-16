@@ -8,7 +8,7 @@ const ItemListContainer = ({prop}) => {
 
     const [productos, setProductos] = useState([])
     const [isLoading, setIsLoading] = useState (true)
-    const { categoria } = useParams
+    const { categoria } = useParams()
     console.log( categoria )
     useEffect(() => {
             mFetch()
@@ -17,7 +17,7 @@ const ItemListContainer = ({prop}) => {
             })
             .catch(error => console.log(error))
             .finally(() => setIsLoading(false))
-    }, [])
+    }, [categoria])
 
     const handleProductFiltered = ({ filterState, handleFilterChange }) => (
         <div className='todocat'>
