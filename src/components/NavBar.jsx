@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <header className='headerHome'>
             <Link to='/' className='logoCat'>
-                <img src="../multimedia/escudoTalleres.png" alt="escudo talleres" />
+                <img src="../public/escudoTalleres.png" alt="escudo talleres" />
             </Link>
             <nav>
                 <div className="navHome">
