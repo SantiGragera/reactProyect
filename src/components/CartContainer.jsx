@@ -9,23 +9,48 @@ const [dataForm, setDataForm] = useState({
   nombre: '',
   phone: '',
   email: '',
+  emailconfirm: ''
 })
+
+const validateForm = () => {
+  const { nombre, phone, email } = dataForm;
+  return nombre.trim() !== '' && phone.trim() !== '' && email.trim() !== '' 
+}
+
+const verificarEmail = () => {
+  const { email, emailconfirm } = dataForm;
+  return email !== emailconfirm
+}
 
 const {cartList, vaciarCarrito, precioTotal, eliminarProducto} = useCartContext()
 
 const generarOrden = (evt) =>{
   evt.preventDefault()
   
-  const order = {}
-  order.buyer = dataForm
-  order.items = cartList.map(({nombre, id, precio, cantidad}) => ({id, nombre, precio, cantidad}))
-  order.total = precioTotal()
+  if (!validateForm(), verificarEmail()){
+    alert('Verifica el formulario')
+  }else{
+    const order = {}
+    order.buyer = dataForm
+    order.items = cartList.map(({nombre, id, precio, cantidad}) => ({id, nombre, precio, cantidad}))
+    order.total = precioTotal()
+    
+    const dbFirestore = getFirestore()
+    const ordersCollection = collection(dbFirestore, 'orders')
   
-  const dbFirestore = getFirestore()
-  const ordersCollection = collection(dbFirestore, 'orders')
-
-  addDoc(ordersCollection, order)
-  .then(resp => console.log(resp))
+    addDoc(ordersCollection, order)
+    .then(resp => alert(`El id de tu compra es: ${resp.id}`))
+    .catch(err => console.log(err))
+    .finally(() => {
+      setDataForm({  
+        nombre: '',
+        phone: '',
+        email: '',
+        emailconfirm: ''
+      })
+      vaciarCarrito()
+    })
+    }
   }
 
   const handleOnChange = (evt)=>{
@@ -51,11 +76,13 @@ const generarOrden = (evt) =>{
                 <button className='kitar' onClick={() => eliminarProducto(producto.id)} >X</button>
               </div>
             ))}
-            <h3>Total: {precioTotal()} </h3>
-            <button className='btncards' onClick={vaciarCarrito}>Vaciar Carrito</button>
+            <div className='vcyt'>
+              <h3>Total: <span className='signopeso'>$</span>{precioTotal()} </h3>
+              <button className='btncards' onClick={vaciarCarrito}>Vaciar Carrito</button>
+            </div>
             
-            <form onSubmit={generarOrden}>
-              <input 
+            <form className='formord' onSubmit={generarOrden}>
+              <input className='inputs' 
                 type="text"
                 name='nombre'
                 onChange={handleOnChange}
@@ -63,15 +90,15 @@ const generarOrden = (evt) =>{
                 placeholder='Nombre'
               />
 
-              <input 
-              type="text" 
+              <input className='inputs'
+              type="number" 
               name='phone' 
               onChange={handleOnChange} 
               value={dataForm.phone} 
               placeholder='Telefono'
               />
 
-              <input 
+              <input className='inputs'
               type="text" 
               name='email' 
               onChange={handleOnChange} 
@@ -79,7 +106,15 @@ const generarOrden = (evt) =>{
               placeholder='Email'
               />
 
-              <button className='btncards'> Generar Orden </button>
+              <input className='inputs'
+              type="text" 
+              name='emailconfirm' 
+              onChange={handleOnChange} 
+              value={dataForm.emailconfirm} 
+              placeholder='Email Confirmacion'
+              />
+
+              <button className='btncards order'> Generar Orden </button>
             </form>
           </>
         :

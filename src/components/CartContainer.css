@@ -42,3 +42,24 @@
 .np{
     color: rgb(252, 122, 0);
 }
+.vcyt{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.vcyt h3{
+    color: white;
+}
+.signopeso{
+    color: rgb(252, 122, 0);
+}
+.formord{
+    display: flex;
+}
+.order{
+    width: 200px;
+}
+.inputs{
+    border-radius: 25px;
+    border: 2px solid rgb(255, 102, 0);
+}
