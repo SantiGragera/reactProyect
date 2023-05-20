@@ -14,6 +14,9 @@
 .logoCat:hover{
     transform: scale(1.1);
 }
+.totalCantidad{
+    text-decoration: none;
+}
 .mla{
     text-decoration: none;
     list-style: none;

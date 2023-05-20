@@ -1,7 +1,9 @@
 import { Link, NavLink} from 'react-router-dom'
 import './NavBar.css'
+import { useCartContext } from '../context/CartContext'
 
 const NavBar = () => {
+    const {cantidadTotal} = useCartContext()
     return (
         <header className='headerHome'>
             <Link to='/' className='logoCat'>
@@ -17,7 +19,7 @@ const NavBar = () => {
             <Link to='/cart'>
                 <div className="carrito">
                     <img src="../multimedia/carrito.png" alt="" />
-                    <h2>0</h2>
+                    <h2 className='totalCantidad'>{cantidadTotal()}</h2>
                 </div>
             </Link>
         </header>

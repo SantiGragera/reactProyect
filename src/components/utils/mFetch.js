@@ -11,21 +11,19 @@ let productos = [
     {id: `10` ,categoria: `merch` ,nombre:`Pulsera Silicona Azul`, stock:`153` ,precio:`$200` ,foto:`../multimedia/pulseracat.webp`},
 ]
 
-// export const mFetch = (id) => {
-//     return new Promise((res,rej)=>{
-//         setTimeout(()=>{
-//             res(!id ? productos : productos.find(producto => producto.id === id))
-//         }, 1000)
-//     })
-// }
 export const mFetch = (id) => {
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(!id ? productos : productos.find(producto => producto.id === id))
+        }, 1000)
+    })
+}
+export const mFetche= (id) => {
     return new Promise((res, rej) => {
-      setTimeout(() => {
         res(
           !id
             ? productos
             : productos.filter((producto) => producto.categoria === id)
         );
-      }, 1000);
     });
   };

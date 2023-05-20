@@ -3,6 +3,7 @@ import './ItemDetailContainer.css'
 import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
 import { mFetch } from './utils/mFetch'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -10,12 +11,24 @@ const ItemDetailContainer = () => {
   const { pid } = useParams()
 
   useEffect(() => {
-    mFetch(pid)
-    .then(resp => setProducto(resp))
-    .catch(err => console.log(err))
-    .finally(() => setIsLoading(false))
+    const dbFirestore = getFirestore()
+    const queryDoc = doc(dbFirestore, 'productos', pid)    
 
-  }, [])
+    getDoc(queryDoc)
+      .then( resp => setProducto( { id: resp.id, ...resp.data() } ) )
+      .catch( err => console.log(err) )
+      .finally( () => setIsLoading(false) )
+
+}, [])
+
+  // useEffect(() => {
+  //   mFetch(pid)
+  //   .then(resp => setProducto(resp))
+  //   .catch(err => console.log(err))
+  //   .finally(() => setIsLoading(false))
+
+  // }, [])
+  
   return (
     <div>
       {isLoading ?

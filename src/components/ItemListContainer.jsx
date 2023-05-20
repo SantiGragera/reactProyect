@@ -1,22 +1,64 @@
 import { useEffect, useState } from 'react';
 import './ItemListContainer.css'
-import { mFetch } from "./utils/mFetch"
+import { mFetch, mFetche } from "./utils/mFetch"
+import { collection, doc, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore'
 import { Link, useParams } from 'react-router-dom';
 import Filter from './Filter';
 
 const ItemListContainer = ({prop}) => {
 
     const [productos, setProductos] = useState([])
+    const [producto, setProducto] = useState({})
     const [isLoading, setIsLoading] = useState (true)
     const { categoria } = useParams()
-    console.log( categoria )
+
+    // useEffect(() => {
+    //         mFetch()
+    //         .then(resultado => {
+    //             setProductos(resultado)
+    //         })
+    //         .catch(error => console.log(error))
+    //         .finally(() => setIsLoading(false))
+    // }, [])
+    // useEffect(() => {
+    //     if (!categoria){
+    //         mFetche()
+    //         .then(resultado => {
+    //             setProductos(resultado)
+    //         })
+    //         .catch(error => console.log(error))
+    //         .finally(() => setIsLoading(false))
+    //     }else{
+    //         mFetche()
+    //         .then(resultado => {
+    //             setProductos(resultado.filter(productos => productos.categoria === categoria))
+    //         })
+    //         .catch(error => console.log(error))
+    //         .finally(() => setIsLoading(false))
+    //     }
+    // }, [categoria])
+
     useEffect(() => {
-            mFetch()
-            .then(resultado => {
-                setProductos(resultado)
-            })
-            .catch(error => console.log(error))
+        const dbFirestore = getFirestore()
+        const queryCollection = collection(dbFirestore, 'productos')    
+
+        if (!categoria) {
+            getDocs(queryCollection)
+            .then(res => setProductos( res.docs.map(producto => ( { id: producto.id, ...producto.data() } ) ) ))
+            .catch(err => console.log(err))
             .finally(() => setIsLoading(false))
+        }else{
+            const queryCollectionFiltered = query(
+                queryCollection,
+                where('categoria','==', categoria),
+
+            )
+
+            getDocs(queryCollectionFiltered)
+            .then(res => setProductos( res.docs.map(producto => ( { id: producto.id, ...producto.data() } ) ) ))
+            .catch(err => console.log(err))
+            .finally(() => setIsLoading(false))
+        }
     }, [categoria])
 
     const handleProductFiltered = ({ filterState, handleFilterChange }) => (
@@ -37,7 +79,7 @@ const ItemListContainer = ({prop}) => {
                                                                         <img className='foto' src={producto.foto} alt="foto producto" />
                                                                         <div className='contexto'>
                                                                             <h4 className='nombre'>{producto.nombre}</h4>
-                                                                            <h5 className='precio'>{producto.precio}</h5>
+                                                                            <h5 className='precio'>${producto.precio}</h5>
                                                                             <h6 className='stock'>{producto.stock} Unidades</h6>
                                                                             <Link to={`/detail/${producto.id}`}>
                                                                                 <button className='btncards'>Ver más</button>
