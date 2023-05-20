@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <header className='headerHome'>
             <Link to='/' className='logoCat'>
-                <img src="../public/escudoTalleres.png" alt="escudo talleres" />
+                <img src="../navbar/escudoTalleres.png" alt="escudo talleres" />
             </Link>
             <nav>
                 <div className="navHome">
@@ -18,7 +18,7 @@ const NavBar = () => {
             </nav>
             <Link to='/cart'>
                 <div className="carrito">
-                    <img src="../multimedia/carrito.png" alt="" />
+                    <img src="../navbar/carrito.png" alt="" />
                     <h2 className='totalCantidad'>{cantidadTotal()}</h2>
                 </div>
             </Link>
