@@ -12,10 +12,10 @@ const [dataForm, setDataForm] = useState({
   emailconfirm: ''
 })
 
-const validateForm = () => {
-  const { nombre, phone, email } = dataForm;
-  return nombre.trim() !== '' && phone.trim() !== '' && email.trim() !== '' 
-}
+// const validateForm = () => {
+//   const { nombre, phone, email } = dataForm;
+//   return nombre.trim() !== '' && phone.trim() !== '' && email.trim() !== '' 
+// }
 
 const verificarEmail = () => {
   const { email, emailconfirm } = dataForm;
@@ -26,9 +26,8 @@ const {cartList, vaciarCarrito, precioTotal, eliminarProducto} = useCartContext(
 
 const generarOrden = (evt) =>{
   evt.preventDefault()
-  
-  if (!validateForm(), verificarEmail()){
-    alert('Verifica el formulario')
+  if (verificarEmail()){
+    alert('El email tiene que ser identico')
   }else{
     const order = {}
     order.buyer = dataForm
@@ -88,6 +87,7 @@ const generarOrden = (evt) =>{
                 onChange={handleOnChange}
                 value={dataForm.nombre}
                 placeholder='Nombre'
+                required
               />
 
               <input className='inputs'
@@ -96,6 +96,7 @@ const generarOrden = (evt) =>{
               onChange={handleOnChange} 
               value={dataForm.phone} 
               placeholder='Telefono'
+              required
               />
 
               <input className='inputs'
@@ -104,6 +105,7 @@ const generarOrden = (evt) =>{
               onChange={handleOnChange} 
               value={dataForm.email} 
               placeholder='Email'
+              required
               />
 
               <input className='inputs'
@@ -112,6 +114,7 @@ const generarOrden = (evt) =>{
               onChange={handleOnChange} 
               value={dataForm.emailconfirm} 
               placeholder='Email Confirmacion'
+              required
               />
 
               <button className='btncards order'> Generar Orden </button>
